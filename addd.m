@@ -24,8 +24,8 @@ for r=1:1:m
         if ((b2(r,c)==255)) 
             if (I11(r,c)==0)
                 I11(r,c)=2;
-%             else
-%                 I11(r,c)=6;
+          else
+                 I11(r,c)=6;
             end
         end
        if ((b3(r,c)==255)) 
