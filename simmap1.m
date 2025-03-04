@@ -1,6 +1,6 @@
-% clc;
-% close all
-% clear all
+ clc;
+ close all
+ clear all
 function [outmap1,m2,n2]=simmap1()
 [filename, pathname]=uigetfile('*.*','Select a image');
   if isequal(filename,0) || isequal(pathname,0)
@@ -11,7 +11,7 @@ function [outmap1,m2,n2]=simmap1()
 
 
 a=imread(fn);
-%imshow(a);
+imshow(a);
 [m1,n1,o1]=size(a);
 mapsize=input('Enter size of the mapping window :');
 m2=m1*mapsize;
@@ -36,8 +36,8 @@ for i=1:m1
     b(i,j)=round(b(i,j));
     end
 end
-% figure
-% imshow(b);
+ figure
+ imshow(b);
 
 %neural network initialisation in outmap matrix
 for ii=1:m1
@@ -67,14 +67,14 @@ for ii=1:m1
             for k=1:mapsize
                 for l=1:mapsize
                      outmapp1((mapsize*ii)-(mapsize-k),(mapsize*jj)-(mapsize-l))= 255 *( floor( (  1+ tanh(inmatrix(k,l)-0.5))));
-                  %outmap((mapsize*ii)-(mapsize-k),(mapsize*jj)-(mapsize-l))=  floor( (  1+ tanh(inmatrix(k,l)-0.5)  ));
+                  outmap((mapsize*ii)-(mapsize-k),(mapsize*jj)-(mapsize-l))=  floor( (  1+ tanh(inmatrix(k,l)-0.5)  ));
                 outmap((mapsize*ii)-(mapsize-k),(mapsize*jj)-(mapsize-l))=inmatrix(k,l);
                 end
             end
         end
 end
-% figure
-% imshow(outmapp1);
+ figure
+ imshow(outmapp1);
 
 counter=0;
 
@@ -237,10 +237,10 @@ for f=1:m2
         outmap1(f,g)= 255 *(floor((1+ tanh(outmap(f,g)-0.5))));
     end
 end
-%  figure
-% imshow(outmap1);
+  figure
+ imshow(outmap1);
  
 counter=counter+1;
 end
 figure,imshow(uint16(outmap1));
-% imsave
+ imsave
